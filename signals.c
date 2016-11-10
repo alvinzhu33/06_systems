@@ -5,7 +5,7 @@
 #include <fcntl.h>
 
 static void sighandler(int signo){
-  
+
   if(signo == SIGINT){
     umask(000);
     char buffer[] = "Ended due to SIGINT";
@@ -15,13 +15,14 @@ static void sighandler(int signo){
     exit(0);
   }
   if(signo == SIGUSR1){
-    printf("%d\n",getppid());
+    printf("Salve, I'm %d\n",getppid());
   }
 }
 
 void main(){
   signal(SIGINT, sighandler);
-  
+  signal(SIGUSR1, sighandler);
+
   while(1){
     printf("Bonjour, I'm %d!\n", getpid());
     sleep(1);
