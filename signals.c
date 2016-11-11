@@ -8,8 +8,8 @@ static void sighandler(int signo){
 
   if(signo == SIGINT){
     umask(000);
-    char buffer[] = "Ended due to SIGINT";
-    int fd = open("file.boop",O_CREAT | O_WRONLY ,0666);
+    char buffer[] = "Ended due to SIGINT\n";
+    int fd = open("file.boop",O_CREAT | O_WRONLY | O_APPEND ,0666);
     write(fd,buffer,sizeof(buffer));
     close(fd);
     exit(0);
